@@ -1,7 +1,7 @@
 
 import path from 'node:path'
 import * as dotenv from 'dotenv'
-//dotenv.config({ path: path.join('./src/config/.env.dev') })
+dotenv.config({ path: path.join('./src/config/.env.dev') })
 dotenv.config({})
 import authController from './modules/auth/auth.controller.js'
 import messageController from './modules/message/message.controller.js'
@@ -68,6 +68,7 @@ const bootstrap = async () => {
         return res.status(404).json({ message: "In-valid app routing" })
     })
     app.use(globalErrorHandling)
+
     startExpiredTokensCron()
 
     return app.listen(port, () => console.log(chalk.bgGreen(chalk.black(`app listening on port ${port}!`))))
